@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="SoftwareLicenses.View.Pages.DashboardPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SoftwareLicenses.View.Pages"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TextPrimary" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextMuted" Color="#64748B"/>
+        <SolidColorBrush x:Key="BorderSoft" Color="#E5E7EB"/>
+        <SolidColorBrush x:Key="CardBg" Color="#FFFFFF"/>
+
+        <SolidColorBrush x:Key="Accent" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="AccentHover" Color="#60A5FA"/>
+
+        <DropShadowEffect x:Key="CardShadow" BlurRadius="24" ShadowDepth="10" Opacity="0.12"/>
+
+        <Style x:Key="BtnPrimary" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="14,0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource AccentHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Reuse: DataGrid styles (упрощенно) -->
+        <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource CardBg}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#FAFBFF"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="RowHeight" Value="40"/>
+            <Setter Property="ColumnHeaderHeight" Value="42"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8FAFC"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMuted}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Padding" Value="10,0"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EEF5FF"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#DDEBFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Карточка KPI -->
+        <Style x:Key="KpiCard" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBg}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="14"/>
+            <Setter Property="Effect" Value="{StaticResource CardShadow}"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Margin="0,0,0,12">
+            <TextBlock Text="Дашборд"
+                       FontSize="22"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimary}"
+                       DockPanel.Dock="Left"/>
+            <Button Content="Обновить"
+                    Style="{StaticResource BtnPrimary}"
+                    Command="{Binding LoadCommand}"
+                    DockPanel.Dock="Right"/>
+        </DockPanel>
+
+        <!-- Cards -->
+        <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,12">
+            <Border Style="{StaticResource KpiCard}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Истекают (30 дней)" Foreground="{StaticResource TextMuted}"/>
+                    <TextBlock Text="{Binding ExpiringCount}" FontSize="28" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource KpiCard}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Просрочены" Foreground="{StaticResource TextMuted}"/>
+                    <TextBlock Text="{Binding ExpiredCount}" FontSize="28" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource KpiCard}" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Установки без лицензии" Foreground="{StaticResource TextMuted}"/>
+                    <TextBlock Text="{Binding NoLicenseInstallationsCount}" FontSize="28" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource KpiCard}">
+                <StackPanel>
+                    <TextBlock Text="Превышение мест" Foreground="{StaticResource TextMuted}"/>
+                    <TextBlock Text="{Binding OverusedLicensesCount}" FontSize="28" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!-- Table card -->
+        <Border Grid.Row="2"
+                Background="{StaticResource CardBg}"
+                BorderBrush="{StaticResource BorderSoft}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="12"
+                Effect="{StaticResource CardShadow}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Скоро истекают"
+                           FontSize="16"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"
+                           Margin="0,0,0,10"/>
+
+                <DataGrid Grid.Row="1"
+                          Style="{StaticResource ModernDataGrid}"
+                          ItemsSource="{Binding ExpiringLicenses}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ПО" Binding="{Binding SoftwareName}" Width="*"/>
+                        <DataGridTextColumn Header="ID" Binding="{Binding LicenseId}" Width="70"/>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="110"/>
+                        <DataGridTextColumn Header="Окончание" Binding="{Binding ExpireDate}" Width="120"/>
+                        <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>
+                        <DataGridTextColumn Header="Занято" Binding="{Binding UsedSeats}" Width="80"/>
+                        <DataGridTextColumn Header="Ключ/договор" Binding="{Binding KeyOrContract}" Width="220"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
