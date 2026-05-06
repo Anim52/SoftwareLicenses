@@ -34,15 +34,19 @@ namespace SoftwareLicenses.ViewModels.Softwares
         [RelayCommand]
         public void Add()
         {
-            // создаём VM окна для добавления
             var vm = new SoftwareEditViewModel(isEdit: false);
 
-            // создаём окно, задаём DataContext и показываем модально
             var win = new SoftwareEditWindow
             {
-                Owner = Application.Current.MainWindow,
                 DataContext = vm
             };
+
+            var owner = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            if (owner != null && owner != win)
+                win.Owner = owner;
 
             if (win.ShowDialog() == true)
                 Load();
@@ -53,14 +57,19 @@ namespace SoftwareLicenses.ViewModels.Softwares
         {
             if (Selected is null) return;
 
-            // передаём выбранный объект в VM окна (копируем значения)
             var vm = new SoftwareEditViewModel(isEdit: true, source: Selected);
 
             var win = new SoftwareEditWindow
             {
-                Owner = Application.Current.MainWindow,
                 DataContext = vm
             };
+
+            var owner = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            if (owner != null && owner != win)
+                win.Owner = owner;
 
             if (win.ShowDialog() == true)
                 Load();

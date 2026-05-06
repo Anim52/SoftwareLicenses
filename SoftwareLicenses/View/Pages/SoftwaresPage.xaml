@@ -170,7 +170,7 @@
                     <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Вендор" Binding="{Binding Vendor}" Width="*"/>
                     <DataGridTextColumn Header="Версия" Binding="{Binding Version}" Width="140"/>
-                    <DataGridCheckBoxColumn Header="Free" Binding="{Binding IsFree}" Width="70"/>
+                    <DataGridCheckBoxColumn Header="Бесплатно" Binding="{Binding IsFree}" Width="70"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

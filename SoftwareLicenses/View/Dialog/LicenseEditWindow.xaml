@@ -185,7 +185,8 @@
                     <ComboBox Style="{StaticResource ModernComboBox}"
                               ItemsSource="{Binding Softwares}"
                               SelectedItem="{Binding SelectedSoftware}"
-                              DisplayMemberPath="Name"/>
+                              DisplayMemberPath="Name"
+                              Foreground="Black"/>
                 </StackPanel>
 
                 <!-- Тип + Статус -->
@@ -200,14 +201,16 @@
                         <TextBlock Style="{StaticResource LabelText}" Text="Тип лицензии"/>
                         <ComboBox Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding LicenseTypes}"
-                                  SelectedItem="{Binding Type}"/>
+                                  SelectedItem="{Binding Type}"
+                                  Foreground="Black"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Style="{StaticResource LabelText}" Text="Статус"/>
                         <ComboBox Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding LicenseStatuses}"
-                                  SelectedItem="{Binding Status}"/>
+                                  SelectedItem="{Binding Status}"
+                                  Foreground="Black"/>
                     </StackPanel>
                 </Grid>
 
@@ -224,7 +227,8 @@
                     <ComboBox Style="{StaticResource ModernComboBox}"
                               ItemsSource="{Binding Suppliers}"
                               SelectedItem="{Binding SelectedSupplier}"
-                              DisplayMemberPath="Name"/>
+                              DisplayMemberPath="Name"
+                              Foreground="Black"/>
                 </StackPanel>
 
                 <!-- Seats + Cost -->
@@ -259,13 +263,15 @@
                     <StackPanel>
                         <TextBlock Style="{StaticResource LabelText}" Text="Дата покупки"/>
                         <DatePicker Style="{StaticResource ModernDatePicker}"
-                                    SelectedDate="{Binding PurchaseDate}"/>
+                                    SelectedDate="{Binding PurchaseDate}"
+                                    Foreground="Black"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Style="{StaticResource LabelText}" Text="Дата окончания (опц.)"/>
                         <DatePicker Style="{StaticResource ModernDatePicker}"
-                                    SelectedDate="{Binding ExpireDate}"/>
+                                    SelectedDate="{Binding ExpireDate}"
+                                    Foreground="Black"/>
                     </StackPanel>
                 </Grid>
 

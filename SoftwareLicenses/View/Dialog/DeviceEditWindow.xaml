@@ -253,7 +253,8 @@
                         <ComboBox Style="{StaticResource FieldComboBox}"
                                   ItemsSource="{Binding Employees}"
                                   SelectedItem="{Binding SelectedEmployee}"
-                                  DisplayMemberPath="FullName"/>
+                                  DisplayMemberPath="FullName"
+                                  Foreground="Black"/>
                     </StackPanel>
                 </Grid>
 

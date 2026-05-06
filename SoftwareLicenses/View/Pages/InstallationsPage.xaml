@@ -171,7 +171,7 @@
                       CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Устройство" Binding="{Binding Device.InventoryNumber}" Width="120"/>
-                    <DataGridTextColumn Header="Hostname" Binding="{Binding Device.Hostname}" Width="150"/>
+                    <DataGridTextColumn Header="ПК" Binding="{Binding Device.Hostname}" Width="150"/>
                     <DataGridTextColumn Header="ПО" Binding="{Binding Software.Name}" Width="*"/>
                     <DataGridTextColumn Header="Версия" Binding="{Binding InstalledVersion}" Width="120"/>
                     <DataGridTextColumn Header="Дата" Binding="{Binding InstallDate}" Width="110"/>

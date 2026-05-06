@@ -22,6 +22,6 @@ namespace SoftwareLicenses.View.Dialog
             InitializeComponent();
         }
 
-      
+       
     }
 }

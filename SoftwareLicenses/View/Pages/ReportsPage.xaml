@@ -323,8 +323,8 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ПО" Binding="{Binding Software}" Width="*"/>
                                     <DataGridTextColumn Header="Поставщик" Binding="{Binding Supplier}" Width="200"/>
-                                    <DataGridTextColumn Header="Seats" Binding="{Binding Seats}" Width="70"/>
-                                    <DataGridTextColumn Header="Used" Binding="{Binding Used}" Width="70"/>
+                                    <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>
+                                    <DataGridTextColumn Header="Занято" Binding="{Binding Used}" Width="70"/>
                                     <DataGridTextColumn Header="До" Binding="{Binding ExpireDate}" Width="110"/>
                                     <DataGridTextColumn Header="Ключ" Binding="{Binding KeyOrContract}" Width="220"/>
                                 </DataGrid.Columns>
@@ -393,9 +393,9 @@
                                       CanUserAddRows="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="ПО" Binding="{Binding Software}" Width="*"/>
-                                    <DataGridTextColumn Header="Seats" Binding="{Binding Seats}" Width="70"/>
-                                    <DataGridTextColumn Header="Used" Binding="{Binding Used}" Width="70"/>
-                                    <DataGridTextColumn Header="Over" Binding="{Binding Over}" Width="70"/>
+                                    <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>
+                                    <DataGridTextColumn Header="Занято" Binding="{Binding Used}" Width="70"/>
+                                    <DataGridTextColumn Header="Больше" Binding="{Binding Over}" Width="70"/>
                                     <DataGridTextColumn Header="До" Binding="{Binding ExpireDate}" Width="110"/>
                                     <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="120"/>
                                     <DataGridTextColumn Header="Ключ" Binding="{Binding KeyOrContract}" Width="220"/>

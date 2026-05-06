@@ -217,7 +217,8 @@
                         <TextBlock Style="{StaticResource LabelText}" Text="Роль"/>
                         <ComboBox Style="{StaticResource FieldComboBox}"
                                   ItemsSource="{Binding Roles}"
-                                  SelectedItem="{Binding Role}"/>
+                                  SelectedItem="{Binding Role}"
+                                  Foreground="Black" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -234,7 +235,8 @@
                     <ComboBox Style="{StaticResource FieldComboBox}"
                               ItemsSource="{Binding Employees}"
                               SelectedItem="{Binding SelectedEmployee}"
-                              DisplayMemberPath="FullName"/>
+                              DisplayMemberPath="FullName"
+                              Foreground="Black"/>
                 </StackPanel>
 
                 <!-- Пароли -->

@@ -221,7 +221,8 @@
                         <ComboBox Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding Devices}"
                                   SelectedItem="{Binding SelectedDevice}"
-                                  DisplayMemberPath="InventoryNumber"/>
+                                  DisplayMemberPath="InventoryNumber"
+                                  Foreground="Black"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -229,7 +230,8 @@
                         <ComboBox Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding Softwares}"
                                   SelectedItem="{Binding SelectedSoftware}"
-                                  DisplayMemberPath="Name"/>
+                                  DisplayMemberPath="Name"
+                                  Foreground="Black"/>
                     </StackPanel>
                 </Grid>
 
@@ -238,7 +240,8 @@
                     <TextBlock Style="{StaticResource LabelText}" Text="Лицензия (опц.)"/>
                     <ComboBox Style="{StaticResource ModernComboBox}"
                               ItemsSource="{Binding Licenses}"
-                              SelectedItem="{Binding SelectedLicense}">
+                              SelectedItem="{Binding SelectedLicense}"
+                              Foreground="Black">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -272,7 +275,8 @@
                     <StackPanel Grid.Column="2">
                         <TextBlock Style="{StaticResource LabelText}" Text="Дата установки"/>
                         <DatePicker Style="{StaticResource ModernDatePicker}"
-                                    SelectedDate="{Binding InstallDate}"/>
+                                    SelectedDate="{Binding InstallDate}"
+                                    Foreground="Black"/>
                     </StackPanel>
                 </Grid>
 
@@ -289,7 +293,8 @@
                         <ComboBox Style="{StaticResource ModernComboBox}"
                                   ItemsSource="{Binding Employees}"
                                   SelectedItem="{Binding SelectedInstalledBy}"
-                                  DisplayMemberPath="FullName"/>
+                                  DisplayMemberPath="FullName"
+                                  Foreground="Black"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">

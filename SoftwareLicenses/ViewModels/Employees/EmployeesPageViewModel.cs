@@ -43,9 +43,15 @@ namespace SoftwareLicenses.ViewModels.Employees
 
             var win = new EmployeeEditWindow
             {
-                Owner = Application.Current.MainWindow,
                 DataContext = vm
             };
+
+            var owner = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            if (owner != null && owner != win)
+                win.Owner = owner;
 
             if (win.ShowDialog() == true)
                 Load();
@@ -60,9 +66,15 @@ namespace SoftwareLicenses.ViewModels.Employees
 
             var win = new EmployeeEditWindow
             {
-                Owner = Application.Current.MainWindow,
                 DataContext = vm
             };
+
+            var owner = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+            if (owner != null && owner != win)
+                win.Owner = owner;
 
             if (win.ShowDialog() == true)
                 Load();
