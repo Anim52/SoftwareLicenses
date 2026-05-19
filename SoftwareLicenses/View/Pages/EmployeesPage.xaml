@@ -8,12 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <SolidColorBrush x:Key="TextPrimary" Color="#0F172A"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#F3F4F6"/>
         <SolidColorBrush x:Key="TextMuted" Color="#64748B"/>
-        <SolidColorBrush x:Key="BorderSoft" Color="#E5E7EB"/>
-        <SolidColorBrush x:Key="CardBg" Color="#FFFFFF"/>
-        <SolidColorBrush x:Key="Accent" Color="#3B82F6"/>
-        <SolidColorBrush x:Key="AccentHover" Color="#60A5FA"/>
+        <SolidColorBrush x:Key="BorderSoft" Color="#1F2937"/>
+        <SolidColorBrush x:Key="CardBg" Color="#1F2937"/>
+        <SolidColorBrush x:Key="Accent" Color="#374151"/>
+        <SolidColorBrush x:Key="AccentHover" Color="#4B5563"/>
         <DropShadowEffect x:Key="CardShadow" BlurRadius="24" ShadowDepth="10" Opacity="0.12"/>
 
         <!-- Buttons -->
@@ -33,7 +33,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12">
+                                CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -64,7 +64,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="12">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -148,11 +148,11 @@
                         Command="{Binding AddCommand}"
                         Margin="0,0,10,0"/>
                 <Button Content="Изменить"
-                        Style="{StaticResource BtnSecondary}"
+                        Style="{StaticResource BtnPrimary}"
                         Command="{Binding EditCommand}"
                         Margin="0,0,10,0"/>
                 <Button Content="Удалить"
-                        Style="{StaticResource BtnSecondary}"
+                        Style="{StaticResource BtnPrimary}"
                         Command="{Binding DeleteCommand}"/>
             </StackPanel>
         </DockPanel>
@@ -162,7 +162,7 @@
                 Background="{StaticResource CardBg}"
                 BorderBrush="{StaticResource BorderSoft}"
                 BorderThickness="1"
-                CornerRadius="14"
+                CornerRadius="10"
                 Padding="12"
                 Effect="{StaticResource CardShadow}">
 

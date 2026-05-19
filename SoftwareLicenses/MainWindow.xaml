@@ -20,7 +20,7 @@
         Width="1300"
         Height="760"
         WindowStartupLocation="CenterScreen"
-        Background="#0B1220"
+        Background="#F3F4F6"
         FontFamily="Segoe UI"
         TextElement.FontSize="13"
         Icon="/Resources/Images/Image.ico">
@@ -58,16 +58,16 @@
         </DataTemplate>
 
         <!-- ====== Colors ====== -->
-        <SolidColorBrush x:Key="SidebarBg" Color="#0F172A"/>
+        <SolidColorBrush x:Key="SidebarBg" Color="#F3F4F6"/>
         <SolidColorBrush x:Key="SidebarBorder" Color="#1F2A3D"/>
         <SolidColorBrush x:Key="ContentBg" Color="#F5F7FB"/>
-        <SolidColorBrush x:Key="CardBg" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="CardBg" Color="#1F2937"/>
 
-        <SolidColorBrush x:Key="TextOnDark" Color="#E5E7EB"/>
-        <SolidColorBrush x:Key="TextMutedOnDark" Color="#9CA3AF"/>
+        <SolidColorBrush x:Key="TextOnDark" Color="#1F2937"/>
+        <SolidColorBrush x:Key="TextMutedOnDark" Color="#6B7280"/>
 
-        <SolidColorBrush x:Key="Accent" Color="#3B82F6"/>
-        <SolidColorBrush x:Key="AccentHover" Color="#60A5FA"/>
+        <SolidColorBrush x:Key="Accent" Color="#374151"/>
+        <SolidColorBrush x:Key="AccentHover" Color="#4B5563"/>
 
         <DropShadowEffect x:Key="CardShadow" BlurRadius="24" ShadowDepth="10" Opacity="0.18"/>
 
@@ -88,7 +88,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="Bd"
                                 Background="{TemplateBinding Background}"
-                                CornerRadius="12">
+                                CornerRadius="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="4"/>
@@ -99,7 +99,7 @@
                                 <Border x:Name="AccentBar"
                                         Grid.Column="0"
                                         Background="Transparent"
-                                        CornerRadius="12,0,0,12"/>
+                                        CornerRadius="10"/>
 
                                 <ContentPresenter Grid.Column="1"
                                                   Margin="10,0,0,0"
@@ -223,7 +223,7 @@
         <!-- ===== Content ===== -->
         <Border Background="{StaticResource ContentBg}" Padding="16">
             <Border Background="{StaticResource CardBg}"
-                    CornerRadius="16"
+                    CornerRadius="10"
                     Padding="16"
                     Effect="{StaticResource CardShadow}">
                 <ContentControl Content="{Binding CurrentVm}"/>

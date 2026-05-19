@@ -9,18 +9,18 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Title="{Binding Title}"
-        Background="#0B1220"
-        Foreground="#E5E7EB"
+        Background="#F3F4F6"
+        Foreground="#1F2937"
         FontFamily="Segoe UI"
         TextElement.FontSize="13"
         Icon="/Resources/Images/Image.ico">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="CardBg" Color="#121A2A"/>
-        <SolidColorBrush x:Key="BorderSoft" Color="#263246"/>
-        <SolidColorBrush x:Key="TextMuted" Color="#9CA3AF"/>
-        <SolidColorBrush x:Key="Accent" Color="#3B82F6"/>
-        <SolidColorBrush x:Key="AccentHover" Color="#60A5FA"/>
+        <SolidColorBrush x:Key="CardBg" Color="#1F2937"/>
+        <SolidColorBrush x:Key="BorderSoft" Color="#D1D5DB"/>
+        <SolidColorBrush x:Key="TextMuted" Color="#6B7280"/>
+        <SolidColorBrush x:Key="Accent" Color="#374151"/>
+        <SolidColorBrush x:Key="AccentHover" Color="#4B5563"/>
 
         <DropShadowEffect x:Key="CardShadow" BlurRadius="22" ShadowDepth="8" Opacity="0.35"/>
 
@@ -29,11 +29,11 @@
         <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Padding" Value="12,0"/>
-            <Setter Property="Background" Value="#0F172A"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Background" Value="#F3F4F6"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CaretBrush" Value="#E5E7EB"/>
+            <Setter Property="CaretBrush" Value="#1F2937"/>
             <Setter Property="SelectionBrush" Value="#334155"/>
             <Setter Property="SelectionOpacity" Value="0.9"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -49,7 +49,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="12"/>
+                            CornerRadius="10"/>
 
                             <!-- Watermark (если Tag задан) -->
                             <TextBlock x:Name="Watermark"
@@ -107,14 +107,14 @@
         <Style x:Key="FieldComboBox" TargetType="ComboBox">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Padding" Value="10,0"/>
-            <Setter Property="Background" Value="#0F172A"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Background" Value="#F3F4F6"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
         <Style x:Key="FieldCheckBox" TargetType="CheckBox">
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
             <Setter Property="Margin" Value="0,8,0,0"/>
         </Style>
 
@@ -127,7 +127,7 @@
         <Style x:Key="BtnSecondary" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Padding" Value="14,0"/>
-            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="Foreground" Value="#1F2937"/>
             <Setter Property="Background" Value="#17233A"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderSoft}"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -146,7 +146,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="12">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -170,7 +170,7 @@
         <Border Background="{StaticResource CardBg}"
                 BorderBrush="{StaticResource BorderSoft}"
                 BorderThickness="1"
-                CornerRadius="18"
+                CornerRadius="10"
                 Padding="18"
                 Effect="{StaticResource CardShadow}">
 
