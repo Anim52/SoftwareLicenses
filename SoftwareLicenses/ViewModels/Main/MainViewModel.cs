@@ -5,6 +5,7 @@ using SoftwareLicenses.Security;
 using SoftwareLicenses.ViewModels.Dashboard;
 using SoftwareLicenses.ViewModels.Devices;
 using SoftwareLicenses.ViewModels.Employees;
+using SoftwareLicenses.ViewModels.Enterprises;
 using SoftwareLicenses.ViewModels.Installations;
 using SoftwareLicenses.ViewModels.Licenses;
 using SoftwareLicenses.ViewModels.Reports;
@@ -59,6 +60,7 @@ namespace SoftwareLicenses.ViewModels.Main
         [RelayCommand] private void OpenDevices() => CurrentVm = new DevicesPageViewModel();
         [RelayCommand] private void OpenInstallations() => CurrentVm = new InstallationsPageViewModel();
         [RelayCommand] private void OpenEmployees() => CurrentVm = new EmployeesPageViewModel();
+        [RelayCommand] private void OpenEnterprises() => CurrentVm = new EnterprisesPageViewModel();
         [RelayCommand] private void OpenSuppliers() => CurrentVm = new SuppliersPageViewModel();
         [RelayCommand] private void OpenUsers() => CurrentVm = new AccountsPageViewModel();
         [RelayCommand] private void OpenReports() => CurrentVm = new ReportsPageViewModel();

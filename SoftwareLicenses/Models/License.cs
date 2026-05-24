@@ -26,6 +26,9 @@ namespace SoftwareLicenses.Models
         public int? SupplierId { get; set; }
         public Supplier? Supplier { get; set; }
 
+        public int? EnterpriseId { get; set; }
+        public Enterprise? Enterprise { get; set; }
+
         public decimal? Cost { get; set; }
         public string? Notes { get; set; }
 

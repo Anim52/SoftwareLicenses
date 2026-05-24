@@ -14,17 +14,9 @@ namespace SoftwareLicenses.Data
 
             var employees = new List<Employee>
 {
-    new() { FullName = "Морозов А.С.", Position = "Мастер по установке ПО", Department = "Выездная установка", Email = "a.morozov@it-ip.ru" },
+    new() { FullName = "Морозов А.С.", Position = "Мастер по установке ПО", Department = "Техническое сопровождение", Email = "a.morozov@it-ip.ru" },
     new() { FullName = "Григорьева О.В.", Position = "Менеджер по работе с клиентами", Department = "Администрирование", Email = "o.grigorieva@it-ip.ru" },
-    new() { FullName = "Кузнецов Д.А.", Position = "Технический специалист", Department = "Удалённая поддержка", Email = "d.kuznetsov@it-ip.ru" },
-    new() { FullName = "Соколова И.П.", Position = "Инженер по настройке", Department = "Конфигурация ПК", Email = "i.sokolova@it-ip.ru" },
-    new() { FullName = "Лебедев Р.А.", Position = "Мастер по лицензиям", Department = "Сопровождение ПО", Email = "r.lebedev@it-ip.ru" },
-    new() { FullName = "Виноградов Т.К.", Position = "Стажёр-установщик", Department = "Выездная установка", Email = "t.vinogradov@it-ip.ru" },
-    new() { FullName = "Белов Е.Н.", Position = "Мастер по установке ПО", Department = "Выездная установка", Email = "e.belov@it-ip.ru" },
-    new() { FullName = "Некрасова А.Ю.", Position = "Специалист техподдержки", Department = "Удалённая поддержка", Email = "a.nekrasova@it-ip.ru" },
-    new() { FullName = "Тимофеев В.Р.", Position = "Инженер по лицензированию", Department = "Сопровождение ПО", Email = "v.timofeev@it-ip.ru" },
-    new() { FullName = "Ермакова Л.С.", Position = "Диспетчер по выездам", Department = "Администрирование", Email = "l.ermakova@it-ip.ru" },
-    new() { FullName = "Степанов Г.М.", Position = "Настройщик серверов", Department = "Конфигурация ПК", Email = "g.stepanov@it-ip.ru" }
+    new() { FullName = "Кузнецов Д.А.", Position = "Технический специалист", Department = "Удалённая поддержка", Email = "d.kuznetsov@it-ip.ru" }
 };
 
             var suppliers = new List<Supplier>
@@ -59,22 +51,31 @@ namespace SoftwareLicenses.Data
     new() { Name = "Firefox", Vendor = "Mozilla", Version = "115.0", IsFree = true }
 };
 
+            var enterprises = new List<Enterprise>
+{
+    new() { Name = "ООО «Вектор»", Inn = "6154012345", Address = "г. Волгодонск, ул. Ленина, 12", ContactPerson = "Иванов П.А.", Phone = "+7 (8639) 11-22-33", Email = "office@vector.ru" },
+    new() { Name = "ИП Петров С.В.", Inn = "615498765432", Address = "г. Волгодонск, пр. Строителей, 8", ContactPerson = "Петров С.В.", Phone = "+7 (928) 222-33-44", Email = "petrov-ip@mail.ru" },
+    new() { Name = "ООО «Дон-Сервис»", Inn = "6160123456", Address = "г. Цимлянск, ул. Советская, 4", ContactPerson = "Сидорова Е.Н.", Phone = "+7 (928) 333-44-55", Email = "info@donservice.ru" },
+    new() { Name = "ООО «Альфа-Торг»", Inn = "6160987654", Address = "г. Ростов-на-Дону, ул. Садовая, 25", ContactPerson = "Ковалёв М.И.", Phone = "+7 (863) 444-55-66", Email = "it@alfa-torg.ru" }
+};
+
             db.Employees.AddRange(employees);
             db.Suppliers.AddRange(suppliers);
             db.Softwares.AddRange(softwares);
+            db.Enterprises.AddRange(enterprises);
             db.SaveChanges();
 
             var licenses = new List<License>
 {
-    new() { SoftwareId = softwares[0].Id, SupplierId = suppliers[0].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "ADB-3M4N-5O6P", Seats = 12, PurchaseDate = new DateOnly(2025, 1, 10), ExpireDate = new DateOnly(2026, 1, 10), Cost = 75000 },
-    new() { SoftwareId = softwares[1].Id, SupplierId = suppliers[1].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "JB-2025-8A9B", Seats = 8, PurchaseDate = new DateOnly(2025, 2, 14), ExpireDate = new DateOnly(2026, 2, 14), Cost = 68000 },
-    new() { SoftwareId = softwares[2].Id, SupplierId = suppliers[4].Id, Type = LicenseType.PerUser, Status = LicenseStatus.Active, KeyOrContract = "OFF21-5E6F-7G8H", Seats = 25, PurchaseDate = new DateOnly(2025, 3, 1), ExpireDate = new DateOnly(2026, 3, 1), Cost = 82000 },
-    new() { SoftwareId = softwares[3].Id, SupplierId = suppliers[8].Id, Type = LicenseType.PerDevice, Status = LicenseStatus.Expired, KeyOrContract = "FIG-TRIAL-2025", Seats = 15, PurchaseDate = new DateOnly(2025, 4, 20), ExpireDate = new DateOnly(2025, 4, 20), Cost = 0 },
-    new() { SoftwareId = softwares[4].Id, SupplierId = suppliers[2].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "SLK-PRO-2025", Seats = 30, PurchaseDate = new DateOnly(2025, 5, 5), ExpireDate = new DateOnly(2026, 5, 5), Cost = 45000 },
-    new() { SoftwareId = softwares[5].Id, SupplierId = suppliers[3].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Expired, KeyOrContract = "ZOOM-BUS-2024", Seats = 10, PurchaseDate = new DateOnly(2024, 6, 11), ExpireDate = new DateOnly(2025, 6, 11), Cost = 26000 },
-    new() { SoftwareId = softwares[6].Id, SupplierId = suppliers[7].Id, Type = LicenseType.PerDevice, Status = LicenseStatus.Active, KeyOrContract = "AUTO-9C0D", Seats = 6, PurchaseDate = new DateOnly(2025, 1, 15), ExpireDate = new DateOnly(2026, 1, 15), Cost = 110000 },
-    new() { SoftwareId = softwares[7].Id, SupplierId = suppliers[6].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "PDOC-2025-77", Seats = 14, PurchaseDate = new DateOnly(2025, 2, 22), ExpireDate = new DateOnly(2026, 2, 22), Cost = 34000 },
-    new() { SoftwareId = softwares[8].Id, SupplierId = suppliers[0].Id, Type = LicenseType.Volume, Status = LicenseStatus.Active, KeyOrContract = "KAS-901Ж", Seats = 40, PurchaseDate = new DateOnly(2025, 4, 10), ExpireDate = new DateOnly(2026, 4, 10), Cost = 52000 }
+    new() { SoftwareId = softwares[0].Id, SupplierId = suppliers[0].Id, EnterpriseId = enterprises[0].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "ADB-3M4N-5O6P", Seats = 12, PurchaseDate = new DateOnly(2025, 1, 10), ExpireDate = new DateOnly(2026, 1, 10), Cost = 75000 },
+    new() { SoftwareId = softwares[1].Id, SupplierId = suppliers[1].Id, EnterpriseId = enterprises[0].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "JB-2025-8A9B", Seats = 8, PurchaseDate = new DateOnly(2025, 2, 14), ExpireDate = new DateOnly(2026, 2, 14), Cost = 68000 },
+    new() { SoftwareId = softwares[2].Id, SupplierId = suppliers[4].Id, EnterpriseId = enterprises[1].Id, Type = LicenseType.PerUser, Status = LicenseStatus.Active, KeyOrContract = "OFF21-5E6F-7G8H", Seats = 25, PurchaseDate = new DateOnly(2025, 3, 1), ExpireDate = new DateOnly(2026, 3, 1), Cost = 82000 },
+    new() { SoftwareId = softwares[3].Id, SupplierId = suppliers[8].Id, EnterpriseId = enterprises[1].Id, Type = LicenseType.PerDevice, Status = LicenseStatus.Expired, KeyOrContract = "FIG-TRIAL-2025", Seats = 15, PurchaseDate = new DateOnly(2025, 4, 20), ExpireDate = new DateOnly(2025, 4, 20), Cost = 0 },
+    new() { SoftwareId = softwares[4].Id, SupplierId = suppliers[2].Id, EnterpriseId = enterprises[2].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "SLK-PRO-2025", Seats = 30, PurchaseDate = new DateOnly(2025, 5, 5), ExpireDate = new DateOnly(2026, 5, 5), Cost = 45000 },
+    new() { SoftwareId = softwares[5].Id, SupplierId = suppliers[3].Id, EnterpriseId = enterprises[2].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Expired, KeyOrContract = "ZOOM-BUS-2024", Seats = 10, PurchaseDate = new DateOnly(2024, 6, 11), ExpireDate = new DateOnly(2025, 6, 11), Cost = 26000 },
+    new() { SoftwareId = softwares[6].Id, SupplierId = suppliers[7].Id, EnterpriseId = enterprises[3].Id, Type = LicenseType.PerDevice, Status = LicenseStatus.Active, KeyOrContract = "AUTO-9C0D", Seats = 6, PurchaseDate = new DateOnly(2025, 1, 15), ExpireDate = new DateOnly(2026, 1, 15), Cost = 110000 },
+    new() { SoftwareId = softwares[7].Id, SupplierId = suppliers[6].Id, EnterpriseId = enterprises[3].Id, Type = LicenseType.Subscription, Status = LicenseStatus.Active, KeyOrContract = "PDOC-2025-77", Seats = 14, PurchaseDate = new DateOnly(2025, 2, 22), ExpireDate = new DateOnly(2026, 2, 22), Cost = 34000 },
+    new() { SoftwareId = softwares[8].Id, SupplierId = suppliers[0].Id, EnterpriseId = enterprises[0].Id, Type = LicenseType.Volume, Status = LicenseStatus.Active, KeyOrContract = "KAS-901Ж", Seats = 40, PurchaseDate = new DateOnly(2025, 4, 10), ExpireDate = new DateOnly(2026, 4, 10), Cost = 52000 }
 };
 
             db.Licenses.AddRange(licenses);
@@ -82,15 +83,15 @@ namespace SoftwareLicenses.Data
 
             var devices = new List<Device>
 {
-    new() { InventoryNumber = "IT-101", Hostname = "design-ws-01", SerialNumber = "SN-101", OperatingSystem = "Windows 11 Pro", Location = "Отдел дизайна, каб. 12", ResponsibleEmployeeId = employees[0].Id },
-    new() { InventoryNumber = "IT-102", Hostname = "dev-mb-03", SerialNumber = "SN-102", OperatingSystem = "macOS Ventura", Location = "Отдел разработки, каб. 8", ResponsibleEmployeeId = employees[1].Id },
-    new() { InventoryNumber = "IT-103", Hostname = "office-pc-12", SerialNumber = "SN-103", OperatingSystem = "Ubuntu 22.04", Location = "Бухгалтерия, каб. 5", ResponsibleEmployeeId = employees[2].Id },
-    new() { InventoryNumber = "IT-104", Hostname = "render-node-07", SerialNumber = "SN-104", OperatingSystem = "Windows 10 Pro", Location = "Рендер-ферма, серверная", ResponsibleEmployeeId = employees[3].Id },
-    new() { InventoryNumber = "IT-105", Hostname = "manager-lap-02", SerialNumber = "SN-105", OperatingSystem = "Windows 11 Pro", Location = "Отдел продаж, каб. 15", ResponsibleEmployeeId = employees[4].Id },
-    new() { InventoryNumber = "IT-106", Hostname = "test-lin-04", SerialNumber = "SN-106", OperatingSystem = "Debian 12", Location = "Лаборатория тестирования", ResponsibleEmployeeId = employees[5].Id },
-    new() { InventoryNumber = "IT-107", Hostname = "sales-lap-03", SerialNumber = "SN-107", OperatingSystem = "Windows 11 Pro", Location = "Отдел продаж, каб. 16", ResponsibleEmployeeId = employees[6].Id },
-    new() { InventoryNumber = "IT-108", Hostname = "backup-srv-01", SerialNumber = "SN-108", OperatingSystem = "Ubuntu Server 22.04", Location = "Серверная, стойка 4", ResponsibleEmployeeId = employees[7].Id },
-    new() { InventoryNumber = "IT-109", Hostname = "qa-mac-02", SerialNumber = "SN-109", OperatingSystem = "macOS Sonoma", Location = "Лаборатория тестирования", ResponsibleEmployeeId = employees[8].Id }
+    new() { InventoryNumber = "IT-101", Hostname = "design-ws-01", SerialNumber = "SN-101", OperatingSystem = "Windows 11 Pro", Location = "Отдел дизайна, каб. 12", ResponsibleEmployeeId = employees[0].Id, EnterpriseId = enterprises[0].Id },
+    new() { InventoryNumber = "IT-102", Hostname = "dev-mb-03", SerialNumber = "SN-102", OperatingSystem = "macOS Ventura", Location = "Отдел разработки, каб. 8", ResponsibleEmployeeId = employees[1].Id, EnterpriseId = enterprises[0].Id },
+    new() { InventoryNumber = "IT-103", Hostname = "office-pc-12", SerialNumber = "SN-103", OperatingSystem = "Ubuntu 22.04", Location = "Бухгалтерия, каб. 5", ResponsibleEmployeeId = employees[2].Id, EnterpriseId = enterprises[1].Id },
+    new() { InventoryNumber = "IT-104", Hostname = "render-node-07", SerialNumber = "SN-104", OperatingSystem = "Windows 10 Pro", Location = "Рендер-ферма, серверная", ResponsibleEmployeeId = employees[0].Id, EnterpriseId = enterprises[1].Id },
+    new() { InventoryNumber = "IT-105", Hostname = "manager-lap-02", SerialNumber = "SN-105", OperatingSystem = "Windows 11 Pro", Location = "Отдел продаж, каб. 15", ResponsibleEmployeeId = employees[1].Id, EnterpriseId = enterprises[2].Id },
+    new() { InventoryNumber = "IT-106", Hostname = "test-lin-04", SerialNumber = "SN-106", OperatingSystem = "Debian 12", Location = "Лаборатория тестирования", ResponsibleEmployeeId = employees[2].Id, EnterpriseId = enterprises[2].Id },
+    new() { InventoryNumber = "IT-107", Hostname = "sales-lap-03", SerialNumber = "SN-107", OperatingSystem = "Windows 11 Pro", Location = "Отдел продаж, каб. 16", ResponsibleEmployeeId = employees[0].Id, EnterpriseId = enterprises[3].Id },
+    new() { InventoryNumber = "IT-108", Hostname = "backup-srv-01", SerialNumber = "SN-108", OperatingSystem = "Ubuntu Server 22.04", Location = "Серверная, стойка 4", ResponsibleEmployeeId = employees[1].Id, EnterpriseId = enterprises[3].Id },
+    new() { InventoryNumber = "IT-109", Hostname = "qa-mac-02", SerialNumber = "SN-109", OperatingSystem = "macOS Sonoma", Location = "Лаборатория тестирования", ResponsibleEmployeeId = employees[2].Id, EnterpriseId = enterprises[0].Id }
 };
 
             db.Devices.AddRange(devices);
@@ -135,8 +136,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[3].Id,
         SoftwareId = softwares[8].Id, // Kaspersky
         LicenseId = licenses[8].Id,
-        InstalledByEmployeeId = employees[3].Id,
-        InstalledBy = employees[3].FullName,
+        InstalledByEmployeeId = employees[0].Id,
+        InstalledBy = employees[0].FullName,
         InstalledVersion = "12.0",
         InstallDate = new DateOnly(2025, 4, 5),
         Notes = "Антивирусная защита"
@@ -146,8 +147,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[4].Id,
         SoftwareId = softwares[2].Id, // Microsoft 365
         LicenseId = licenses[2].Id,
-        InstalledByEmployeeId = employees[4].Id,
-        InstalledBy = employees[4].FullName,
+        InstalledByEmployeeId = employees[1].Id,
+        InstalledBy = employees[1].FullName,
         InstalledVersion = "Business",
         InstallDate = new DateOnly(2025, 5, 12),
         Notes = "Офисный пакет"
@@ -157,8 +158,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[5].Id,
         SoftwareId = softwares[12].Id, // PostgreSQL
         LicenseId = null,
-        InstalledByEmployeeId = employees[5].Id,
-        InstalledBy = employees[5].FullName,
+        InstalledByEmployeeId = employees[2].Id,
+        InstalledBy = employees[2].FullName,
         InstalledVersion = "16.2",
         InstallDate = new DateOnly(2025, 6, 18),
         Notes = "СУБД для тестов"
@@ -168,8 +169,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[6].Id,
         SoftwareId = softwares[4].Id, // Slack
         LicenseId = licenses[4].Id,
-        InstalledByEmployeeId = employees[6].Id,
-        InstalledBy = employees[6].FullName,
+        InstalledByEmployeeId = employees[0].Id,
+        InstalledBy = employees[0].FullName,
         InstalledVersion = "Pro",
         InstallDate = new DateOnly(2025, 6, 25),
         Notes = "Коммуникационный сервис"
@@ -179,8 +180,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[7].Id,
         SoftwareId = softwares[11].Id, // Ubuntu Server
         LicenseId = null,
-        InstalledByEmployeeId = employees[7].Id,
-        InstalledBy = employees[7].FullName,
+        InstalledByEmployeeId = employees[1].Id,
+        InstalledBy = employees[1].FullName,
         InstalledVersion = "22.04",
         InstallDate = new DateOnly(2025, 7, 5),
         Notes = "Сервер резервного копирования"
@@ -190,8 +191,8 @@ namespace SoftwareLicenses.Data
         DeviceId = devices[8].Id,
         SoftwareId = softwares[13].Id, // Firefox
         LicenseId = null,
-        InstalledByEmployeeId = employees[8].Id,
-        InstalledBy = employees[8].FullName,
+        InstalledByEmployeeId = employees[2].Id,
+        InstalledBy = employees[2].FullName,
         InstalledVersion = "115.0",
         InstallDate = new DateOnly(2025, 7, 12),
         Notes = "Браузер"
@@ -204,11 +205,8 @@ namespace SoftwareLicenses.Data
 
             db.Accounts.AddRange(
      new Account { Login = "admin", PasswordHash = PasswordHasher.Hash("Admin_2026!"), Role = UserRole.Admin, IsActive = true, EmployeeId = employees[0].Id },
-     new Account { Login = "a.morozov", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Manager, IsActive = true, EmployeeId = employees[0].Id },
-     new Account { Login = "o.grigorieva", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Manager, IsActive = true, EmployeeId = employees[1].Id },
-     new Account { Login = "d.kuznetsov", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Manager, IsActive = true, EmployeeId = employees[2].Id },
-     new Account { Login = "i.sokolova", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Technician, IsActive = true, EmployeeId = employees[3].Id },
-     new Account { Login = "r.lebedev", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Technician, IsActive = true, EmployeeId = employees[4].Id }
+     new Account { Login = "manager", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Manager, IsActive = true, EmployeeId = employees[1].Id },
+     new Account { Login = "tech", PasswordHash = PasswordHasher.Hash("123456"), Role = UserRole.Technician, IsActive = true, EmployeeId = employees[2].Id }
  );
 
             db.SaveChanges();

@@ -13,6 +13,9 @@ namespace SoftwareLicenses.Models
         public string? OperatingSystem { get; set; }
         public string? Location { get; set; }
 
+        public int? EnterpriseId { get; set; }
+        public Enterprise? Enterprise { get; set; }
+
         public int? ResponsibleEmployeeId { get; set; }
         public Employee? ResponsibleEmployee { get; set; }
 

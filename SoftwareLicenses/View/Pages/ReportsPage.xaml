@@ -321,6 +321,7 @@
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False">
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Предприятие" Binding="{Binding Enterprise}" Width="200"/>
                                     <DataGridTextColumn Header="ПО" Binding="{Binding Software}" Width="*"/>
                                     <DataGridTextColumn Header="Поставщик" Binding="{Binding Supplier}" Width="200"/>
                                     <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>
@@ -357,6 +358,7 @@
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False">
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Предприятие" Binding="{Binding Enterprise}" Width="200"/>
                                     <DataGridTextColumn Header="Инв№" Binding="{Binding DeviceInv}" Width="120"/>
                                     <DataGridTextColumn Header="Hostname" Binding="{Binding DeviceHost}" Width="160"/>
                                     <DataGridTextColumn Header="ПО" Binding="{Binding Software}" Width="*"/>
@@ -392,6 +394,7 @@
                                       AutoGenerateColumns="False"
                                       CanUserAddRows="False">
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Предприятие" Binding="{Binding Enterprise}" Width="200"/>
                                     <DataGridTextColumn Header="ПО" Binding="{Binding Software}" Width="*"/>
                                     <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>
                                     <DataGridTextColumn Header="Занято" Binding="{Binding Used}" Width="70"/>

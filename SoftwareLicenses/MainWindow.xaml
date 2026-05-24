@@ -10,6 +10,7 @@
         xmlns:vmDev="clr-namespace:SoftwareLicenses.ViewModels.Devices"
         xmlns:vmInst="clr-namespace:SoftwareLicenses.ViewModels.Installations"
         xmlns:vmEmp="clr-namespace:SoftwareLicenses.ViewModels.Employees"
+        xmlns:vmEnt="clr-namespace:SoftwareLicenses.ViewModels.Enterprises"
         xmlns:vmSup="clr-namespace:SoftwareLicenses.ViewModels.Suppliers"
         xmlns:views="clr-namespace:SoftwareLicenses.View.Pages"
         xmlns:vmUsers="clr-namespace:SoftwareLicenses.ViewModels.Users"
@@ -53,6 +54,9 @@
         <DataTemplate DataType="{x:Type vmEmp:EmployeesPageViewModel}">
             <views:EmployeesPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vmEnt:EnterprisesPageViewModel}">
+            <views:EnterprisesPage/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vmSup:SuppliersPageViewModel}">
             <views:SuppliersPage/>
         </DataTemplate>
@@ -63,7 +67,7 @@
         <SolidColorBrush x:Key="ContentBg" Color="#F5F7FB"/>
         <SolidColorBrush x:Key="CardBg" Color="#1F2937"/>
 
-        <SolidColorBrush x:Key="TextOnDark" Color="#1F2937"/>
+        <SolidColorBrush x:Key="TextOnDark" Color="#374151"/>
         <SolidColorBrush x:Key="TextMutedOnDark" Color="#6B7280"/>
 
         <SolidColorBrush x:Key="Accent" Color="#374151"/>
@@ -109,17 +113,37 @@
                         </Border>
 
                         <ControlTemplate.Triggers>
+
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#16233A"/>
-                                <Setter TargetName="AccentBar" Property="Background" Value="{StaticResource AccentHover}"/>
+                                <Setter TargetName="Bd"
+                Property="Background"
+                Value="#374151"/>
+
+                                <Setter Property="Foreground"
+                Value="White"/>
+
+                                <Setter TargetName="AccentBar"
+                Property="Background"
+                Value="#60A5FA"/>
                             </Trigger>
+
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#1A2A45"/>
-                                <Setter TargetName="AccentBar" Property="Background" Value="{StaticResource Accent}"/>
+                                <Setter TargetName="Bd"
+                Property="Background"
+                Value="#1E293B"/>
+
+                                <Setter Property="Foreground"
+                Value="White"/>
+
+                                <Setter TargetName="AccentBar"
+                Property="Background"
+                Value="#3B82F6"/>
                             </Trigger>
+
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" Value="0.45"/>
                             </Trigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -167,7 +191,7 @@
                               HorizontalScrollBarVisibility="Disabled">
                     <StackPanel Margin="6,0,6,10">
 
-                        <Button Content="🏠  Дашборд"
+                        <Button Content="🏠  Панель анализа лицензий"
                                 Style="{StaticResource NavButton}"
                                 Command="{Binding OpenDashboardCommand}"/>
 
@@ -194,6 +218,10 @@
                         <Button Content="👤  Сотрудники"
                                 Style="{StaticResource NavButton}"
                                 Command="{Binding OpenEmployeesCommand}"/>
+
+                        <Button Content="🏭  Предприятия"
+                                Style="{StaticResource NavButton}"
+                                Command="{Binding OpenEnterprisesCommand}"/>
 
                         <Button Content="👥  Пользователи"
                                 Style="{StaticResource NavButton}"

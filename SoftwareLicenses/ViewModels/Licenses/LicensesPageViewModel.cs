@@ -32,6 +32,7 @@ namespace SoftwareLicenses.ViewModels.Licenses
      .AsNoTracking()
      .Include(l => l.Software)
      .Include(l => l.Supplier)
+     .Include(l => l.Enterprise)
      .OrderBy(l => l.Software.Name)
      .ThenByDescending(l => l.ExpireDate)
      .ToList();

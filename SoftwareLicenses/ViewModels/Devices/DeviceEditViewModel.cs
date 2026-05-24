@@ -21,6 +21,8 @@ namespace SoftwareLicenses.ViewModels.Devices
         // список сотрудников (ответственный)
         [ObservableProperty] private ObservableCollection<Employee> employees = new();
         [ObservableProperty] private Employee? selectedEmployee;
+        [ObservableProperty] private ObservableCollection<Enterprise> enterprises = new();
+        [ObservableProperty] private Enterprise? selectedEnterprise;
 
         // поля устройства
         [ObservableProperty] private string inventoryNumber = "";
@@ -37,6 +39,7 @@ namespace SoftwareLicenses.ViewModels.Devices
             _isEdit = isEdit;
 
             LoadEmployees();
+            LoadEnterprises();
 
             if (_isEdit && source != null)
             {
@@ -51,6 +54,9 @@ namespace SoftwareLicenses.ViewModels.Devices
 
                 if (source.ResponsibleEmployeeId.HasValue)
                     SelectedEmployee = Employees.FirstOrDefault(e => e.Id == source.ResponsibleEmployeeId.Value);
+
+                if (source.EnterpriseId.HasValue)
+                    SelectedEnterprise = Enterprises.FirstOrDefault(e => e.Id == source.EnterpriseId.Value);
             }
         }
 
@@ -59,6 +65,13 @@ namespace SoftwareLicenses.ViewModels.Devices
             using var db = new AppDbContext();
             var list = db.Employees.AsNoTracking().OrderBy(e => e.FullName).ToList();
             Employees = new ObservableCollection<Employee>(list);
+        }
+
+        private void LoadEnterprises()
+        {
+            using var db = new AppDbContext();
+            var list = db.Enterprises.AsNoTracking().OrderBy(e => e.Name).ToList();
+            Enterprises = new ObservableCollection<Enterprise>(list);
         }
 
         private bool CanSave()
@@ -108,6 +121,7 @@ namespace SoftwareLicenses.ViewModels.Devices
             d.Notes = string.IsNullOrWhiteSpace(Notes) ? null : Notes.Trim();
 
             d.ResponsibleEmployeeId = SelectedEmployee?.Id;
+            d.EnterpriseId = SelectedEnterprise?.Id;
         }
 
         [RelayCommand]

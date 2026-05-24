@@ -22,6 +22,7 @@ namespace SoftwareLicenses.Data
         public DbSet<Supplier> Suppliers => Set<Supplier>();
         public DbSet<Installation> Installations => Set<Installation>();
         public DbSet<Account> Accounts => Set<Account>();
+        public DbSet<Enterprise> Enterprises => Set<Enterprise>();
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -41,6 +42,22 @@ namespace SoftwareLicenses.Data
             modelBuilder.Entity<Device>()
                 .HasIndex(d => d.InventoryNumber)
                 .IsUnique();
+            modelBuilder.Entity<Enterprise>()
+                .HasIndex(e => e.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Device>()
+                .HasOne(d => d.Enterprise)
+                .WithMany(e => e.Devices)
+                .HasForeignKey(d => d.EnterpriseId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<License>()
+                .HasOne(l => l.Enterprise)
+                .WithMany(e => e.Licenses)
+                .HasForeignKey(l => l.EnterpriseId)
+                .OnDelete(DeleteBehavior.SetNull);
+
 
             modelBuilder.Entity<Installation>()
                 .HasIndex(i => new { i.DeviceId, i.SoftwareId })

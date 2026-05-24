@@ -110,7 +110,7 @@
 
         <!-- Header -->
         <DockPanel Margin="0,0,0,12">
-            <TextBlock Text="Дашборд"
+            <TextBlock Text="Панель анализа лицензий "
                        FontSize="22"
                        FontWeight="SemiBold"
                        Foreground="{StaticResource TextPrimary}"

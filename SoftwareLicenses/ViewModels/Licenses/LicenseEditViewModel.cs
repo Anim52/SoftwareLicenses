@@ -22,6 +22,8 @@ namespace SoftwareLicenses.ViewModels.Licenses
 
         [ObservableProperty] private ObservableCollection<Supplier> suppliers = new();
         [ObservableProperty] private Supplier? selectedSupplier;
+        [ObservableProperty] private ObservableCollection<Enterprise> enterprises = new();
+        [ObservableProperty] private Enterprise? selectedEnterprise;
 
 
         // Выбранное ПО
@@ -52,6 +54,7 @@ namespace SoftwareLicenses.ViewModels.Licenses
 
             LoadSoftwares();
             LoadSuppliers();
+            LoadEnterprises();
 
 
             if (_isEdit && source != null)
@@ -74,6 +77,9 @@ namespace SoftwareLicenses.ViewModels.Licenses
                 if (source.SupplierId.HasValue)
                     SelectedSupplier = Suppliers.FirstOrDefault(s => s.Id == source.SupplierId.Value);
 
+                if (source.EnterpriseId.HasValue)
+                    SelectedEnterprise = Enterprises.FirstOrDefault(e => e.Id == source.EnterpriseId.Value);
+
             }
         }
 
@@ -88,6 +94,13 @@ namespace SoftwareLicenses.ViewModels.Licenses
             using var db = new AppDbContext();
             var list = db.Suppliers.AsNoTracking().OrderBy(s => s.Name).ToList();
             Suppliers = new ObservableCollection<Supplier>(list);
+        }
+
+        private void LoadEnterprises()
+        {
+            using var db = new AppDbContext();
+            var list = db.Enterprises.AsNoTracking().OrderBy(e => e.Name).ToList();
+            Enterprises = new ObservableCollection<Enterprise>(list);
         }
 
         private bool CanSave() => SelectedSoftware != null && Seats > 0;
@@ -121,6 +134,7 @@ namespace SoftwareLicenses.ViewModels.Licenses
             entity.Type = Type;
             entity.Status = Status;
             entity.SupplierId = SelectedSupplier?.Id;
+            entity.EnterpriseId = SelectedEnterprise?.Id;
 
             entity.KeyOrContract = string.IsNullOrWhiteSpace(KeyOrContract) ? null : KeyOrContract.Trim();
             entity.Seats = Seats;

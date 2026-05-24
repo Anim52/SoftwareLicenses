@@ -171,6 +171,7 @@
                       CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ПО" Binding="{Binding Software.Name}" Width="*"/>
+                    <DataGridTextColumn Header="Предприятие" Binding="{Binding Enterprise.Name}" Width="200"/>
                     <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="140"/>
                     <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="110"/>
                     <DataGridTextColumn Header="Мест" Binding="{Binding Seats}" Width="70"/>

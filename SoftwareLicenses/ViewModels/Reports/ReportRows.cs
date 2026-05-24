@@ -7,6 +7,7 @@ namespace SoftwareLicenses.ViewModels.Reports
     public class ExpiringLicenseReportRow
     {
         public string Software { get; set; } = "";
+        public string? Enterprise { get; set; }
         public string? Supplier { get; set; }
         public string Status { get; set; } = "";
         public string? KeyOrContract { get; set; }
@@ -19,6 +20,7 @@ namespace SoftwareLicenses.ViewModels.Reports
     {
         public string DeviceInv { get; set; } = "";
         public string DeviceHost { get; set; } = "";
+        public string? Enterprise { get; set; }
         public string Software { get; set; } = "";
         public DateOnly InstallDate { get; set; }
         public string? InstalledBy { get; set; }
@@ -27,6 +29,7 @@ namespace SoftwareLicenses.ViewModels.Reports
     public class LicenseUsageReportRow
     {
         public string Software { get; set; } = "";
+        public string? Enterprise { get; set; }
         public string? KeyOrContract { get; set; }
         public int Seats { get; set; }
         public int Used { get; set; }

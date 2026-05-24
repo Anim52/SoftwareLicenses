@@ -31,6 +31,7 @@ namespace SoftwareLicenses.ViewModels.Devices
             var list = db.Devices
                 .AsNoTracking()
                 .Include(d => d.ResponsibleEmployee)
+                .Include(d => d.Enterprise)
                 .OrderBy(d => d.InventoryNumber)
                 .ThenBy(d => d.Hostname)
                 .ToList();

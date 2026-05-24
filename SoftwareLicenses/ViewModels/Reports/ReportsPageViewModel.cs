@@ -55,6 +55,7 @@ namespace SoftwareLicenses.ViewModels.Reports
             var list = db.Licenses.AsNoTracking()
                 .Include(l => l.Software)
                 .Include(l => l.Supplier)
+                .Include(l => l.Enterprise)
                 .Where(l => l.Status == LicenseStatus.Active
                             && l.ExpireDate != null
                             && l.ExpireDate >= today
@@ -64,6 +65,7 @@ namespace SoftwareLicenses.ViewModels.Reports
                 .Select(l => new ExpiringLicenseReportRow
                 {
                     Software = l.Software.Name,
+                    Enterprise = l.Enterprise?.Name,
                     Supplier = l.Supplier?.Name,
                     Status = l.Status.ToString(),
                     KeyOrContract = l.KeyOrContract,
@@ -82,7 +84,7 @@ namespace SoftwareLicenses.ViewModels.Reports
             using var db = new AppDbContext();
 
             var list = db.Installations.AsNoTracking()
-                .Include(i => i.Device)
+                .Include(i => i.Device).ThenInclude(d => d.Enterprise)
                 .Include(i => i.Software)
                 .Include(i => i.InstalledByEmployee) // если ты добавил InstalledByEmployee
                 .Where(i => i.LicenseId == null && i.Software.IsFree == false)
@@ -93,6 +95,7 @@ namespace SoftwareLicenses.ViewModels.Reports
                 {
                     DeviceInv = i.Device.InventoryNumber,
                     DeviceHost = i.Device.Hostname,
+                    Enterprise = i.Device.Enterprise?.Name,
                     Software = i.Software.Name,
                     InstallDate = i.InstallDate,
                     InstalledBy = i.InstalledByEmployee?.FullName
@@ -116,11 +119,13 @@ namespace SoftwareLicenses.ViewModels.Reports
 
             var list = db.Licenses.AsNoTracking()
                 .Include(l => l.Software)
+                .Include(l => l.Enterprise)
                 .OrderBy(l => l.Software.Name)
                 .ToList()
                 .Select(l => new LicenseUsageReportRow
                 {
                     Software = l.Software.Name,
+                    Enterprise = l.Enterprise?.Name,
                     KeyOrContract = l.KeyOrContract,
                     Seats = l.Seats,
                     Used = usedByLicense.TryGetValue(l.Id, out var u) ? u : 0,
@@ -138,25 +143,25 @@ namespace SoftwareLicenses.ViewModels.Reports
         [RelayCommand]
         public void ExportExpiringCsv()
             => ExportCsv("expiring_licenses.csv",
-                "Software,Supplier,Status,KeyOrContract,Seats,Used,ExpireDate",
+                "Enterprise,Software,Supplier,Status,KeyOrContract,Seats,Used,ExpireDate",
                 ExpiringLicenses.Select(r => string.Join(",",
-                    Csv(r.Software), Csv(r.Supplier), Csv(r.Status), Csv(r.KeyOrContract),
+                    Csv(r.Enterprise), Csv(r.Software), Csv(r.Supplier), Csv(r.Status), Csv(r.KeyOrContract),
                     r.Seats, r.Used, Csv(r.ExpireDate?.ToString()))));
 
         [RelayCommand]
         public void ExportNoLicenseCsv()
             => ExportCsv("no_license_installations.csv",
-                "DeviceInv,DeviceHost,Software,InstallDate,InstalledBy",
+                "Enterprise,DeviceInv,DeviceHost,Software,InstallDate,InstalledBy",
                 NoLicenseInstallations.Select(r => string.Join(",",
-                    Csv(r.DeviceInv), Csv(r.DeviceHost), Csv(r.Software),
+                    Csv(r.Enterprise), Csv(r.DeviceInv), Csv(r.DeviceHost), Csv(r.Software),
                     Csv(r.InstallDate.ToString()), Csv(r.InstalledBy))));
 
         [RelayCommand]
         public void ExportUsageCsv()
             => ExportCsv("license_usage.csv",
-                "Software,KeyOrContract,Status,Seats,Used,Over,ExpireDate",
+                "Enterprise,Software,KeyOrContract,Status,Seats,Used,Over,ExpireDate",
                 LicenseUsage.Select(r => string.Join(",",
-                    Csv(r.Software), Csv(r.KeyOrContract), Csv(r.Status),
+                    Csv(r.Enterprise), Csv(r.Software), Csv(r.KeyOrContract), Csv(r.Status),
                     r.Seats, r.Used, r.Over, Csv(r.ExpireDate?.ToString()))));
 
         private void ExportCsv(string defaultName, string header, IEnumerable<string> lines)
@@ -216,10 +221,10 @@ namespace SoftwareLicenses.ViewModels.Reports
         private FlowDocument BuildFlowDocumentForExpiring()
         {
             var doc = BaseDoc($"Истекающие лицензии (в течение {Days} дней)");
-            var table = NewTable(new[] { "ПО", "Поставщик", "Seats", "Used", "До", "Ключ" });
+            var table = NewTable(new[] { "Предприятие", "ПО", "Поставщик", "Seats", "Used", "До", "Ключ" });
 
             foreach (var r in ExpiringLicenses)
-                AddRow(table, r.Software, r.Supplier ?? "", r.Seats.ToString(), r.Used.ToString(),
+                AddRow(table, r.Enterprise ?? "", r.Software, r.Supplier ?? "", r.Seats.ToString(), r.Used.ToString(),
                     r.ExpireDate?.ToString() ?? "", r.KeyOrContract ?? "");
 
             doc.Blocks.Add(table);
@@ -229,10 +234,10 @@ namespace SoftwareLicenses.ViewModels.Reports
         private FlowDocument BuildFlowDocumentForNoLicense()
         {
             var doc = BaseDoc("Установки без лицензии (для платного ПО)");
-            var table = NewTable(new[] { "Инв№", "Hostname", "ПО", "Дата", "Установил" });
+            var table = NewTable(new[] { "Предприятие", "Инв№", "Hostname", "ПО", "Дата", "Установил" });
 
             foreach (var r in NoLicenseInstallations)
-                AddRow(table, r.DeviceInv, r.DeviceHost, r.Software, r.InstallDate.ToString(), r.InstalledBy ?? "");
+                AddRow(table, r.Enterprise ?? "", r.DeviceInv, r.DeviceHost, r.Software, r.InstallDate.ToString(), r.InstalledBy ?? "");
 
             doc.Blocks.Add(table);
             return doc;
@@ -241,10 +246,10 @@ namespace SoftwareLicenses.ViewModels.Reports
         private FlowDocument BuildFlowDocumentForUsage()
         {
             var doc = BaseDoc("Использование лицензий (Seats/Used)");
-            var table = NewTable(new[] { "ПО", "Seats", "Used", "Over", "До", "Статус", "Ключ" });
+            var table = NewTable(new[] { "Предприятие", "ПО", "Seats", "Used", "Over", "До", "Статус", "Ключ" });
 
             foreach (var r in LicenseUsage)
-                AddRow(table, r.Software, r.Seats.ToString(), r.Used.ToString(), r.Over.ToString(),
+                AddRow(table, r.Enterprise ?? "", r.Software, r.Seats.ToString(), r.Used.ToString(), r.Over.ToString(),
                     r.ExpireDate?.ToString() ?? "", r.Status, r.KeyOrContract ?? "");
 
             doc.Blocks.Add(table);
