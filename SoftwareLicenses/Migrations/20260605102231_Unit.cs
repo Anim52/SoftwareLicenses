@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SoftwareLicenses.Migrations
 {
     /// <inheritdoc />
-    public partial class AddEnterprises : Migration
+    public partial class Unit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

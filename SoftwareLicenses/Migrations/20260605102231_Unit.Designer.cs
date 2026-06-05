@@ -12,8 +12,8 @@ using SoftwareLicenses.Data;
 namespace SoftwareLicenses.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260524102923_AddEnterprises")]
-    partial class AddEnterprises
+    [Migration("20260605102231_Unit")]
+    partial class Unit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
